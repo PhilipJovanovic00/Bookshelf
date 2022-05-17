@@ -2,8 +2,14 @@ package ch.bzz.bookshelf.service;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashSet;
+import java.util.Properties;
 import java.util.Set;
+
+import static java.lang.System.setProperties;
 
 /**
  * configure the web services and properties
@@ -11,6 +17,9 @@ import java.util.Set;
 
 @ApplicationPath("/resource")
 public class Config extends Application {
+    private static final String PROPERTIES_PATH = "/home/Documents/Workspace/Java/Bookshelf/src/main/webapp/bookList.properties";
+    private static Properties properties = null;
+
     /**
      * define all provider classes
      *
@@ -22,5 +31,29 @@ public class Config extends Application {
         providers.add(TestService.class);
         return providers;
     }
+
+    public static String getProperty(String property) {
+        if (Config.properties == null) {
+            setProperties(new Properties());
+            readProperties();
+        }
+        String value = Config.properties.getProperty(property);
+        if (value == null) return "";
+        return value;
+    }
+
+    private static void readProperties() {
+        InputStream inputStream;
+        try {
+            inputStream = new FileInputStream(PROPERTIES_PATH);
+            properties.load(inputStream);
+            if (inputStream != null) inputStream.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException();
+        }
+
+    }
+
 
 }

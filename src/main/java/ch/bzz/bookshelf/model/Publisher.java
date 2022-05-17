@@ -8,6 +8,7 @@ public class Publisher {
     private String publisher;
     private List<Book> bookList;
 
+
     public String getPublisherUUID() {
         return publisherUUID;
     }
