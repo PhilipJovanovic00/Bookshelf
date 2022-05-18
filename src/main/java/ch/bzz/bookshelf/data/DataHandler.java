@@ -3,7 +3,6 @@ package ch.bzz.bookshelf.data;
 import ch.bzz.bookshelf.model.Book;
 import ch.bzz.bookshelf.model.Publisher;
 import ch.bzz.bookshelf.service.Config;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -32,7 +31,6 @@ public class DataHandler {
 
     /**
      * gets the only instance of this class
-     *
      * @return
      */
     public static DataHandler getInstance() {
@@ -44,7 +42,6 @@ public class DataHandler {
 
     /**
      * reads all books
-     *
      * @return list of books
      */
     public List<Book> readAllBooks() {
@@ -53,7 +50,6 @@ public class DataHandler {
 
     /**
      * reads a book by its uuid
-     *
      * @param bookUUID
      * @return the Book (null=not found)
      */
@@ -69,7 +65,6 @@ public class DataHandler {
 
     /**
      * reads all Publishers
-     *
      * @return list of publishers
      */
     public List<Publisher> readAllPublishers() {
@@ -79,7 +74,6 @@ public class DataHandler {
 
     /**
      * reads a publisher by its uuid
-     *
      * @param publisherUUID
      * @return the Publisher (null=not found)
      */
@@ -131,7 +125,6 @@ public class DataHandler {
             ex.printStackTrace();
         }
     }
-
     /**
      * gets bookList
      *
@@ -170,3 +163,4 @@ public class DataHandler {
 
 
 }
+

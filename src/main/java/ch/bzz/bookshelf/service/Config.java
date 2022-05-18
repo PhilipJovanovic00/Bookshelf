@@ -17,7 +17,7 @@ import static java.lang.System.setProperties;
 
 @ApplicationPath("/resource")
 public class Config extends Application {
-    private static final String PROPERTIES_PATH = "/home/Documents/Workspace/Java/Bookshelf/src/main/webapp/bookList.properties";
+    private static final String PROPERTIES_PATH = "/home/philipj/bzz/webapp/bookList.properties";
     private static Properties properties = null;
 
     /**
@@ -29,9 +29,16 @@ public class Config extends Application {
     public Set<Class<?>> getClasses() {
         HashSet providers = new HashSet<Class<?>>();
         providers.add(TestService.class);
+        providers.add(BookService.class);
         return providers;
     }
 
+    /**
+     * Gets the value of a property
+     *
+     * @param property the key of the property to be read
+     * @return the value of the property
+     */
     public static String getProperty(String property) {
         if (Config.properties == null) {
             setProperties(new Properties());
@@ -42,7 +49,11 @@ public class Config extends Application {
         return value;
     }
 
+    /**
+     * reads the properties file
+     */
     private static void readProperties() {
+
         InputStream inputStream;
         try {
             inputStream = new FileInputStream(PROPERTIES_PATH);
@@ -52,8 +63,14 @@ public class Config extends Application {
             ex.printStackTrace();
             throw new RuntimeException();
         }
-
     }
 
-
+    /**
+     * Sets the properties
+     *
+     * @param properties the value to set
+     */
+    private static void setProperties(Properties properties) {
+        Config.properties = properties;
+    }
 }
